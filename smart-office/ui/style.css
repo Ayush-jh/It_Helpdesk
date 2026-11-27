@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+  font-family:
+    system-ui,
+    -apple-system,
+    Segoe UI,
+    Roboto,
+    sans-serif;
+}
+body {
+  margin: 0;
+  background: #f4f6fa;
+  color: #1a2332;
+}
+header {
+  background: #1e2a44;
+  color: #fff;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+header h1 {
+  margin: 0;
+  font-size: 20px;
+}
+nav button {
+  background: transparent;
+  color: #cfd8e6;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+nav button.active,
+nav button:hover {
+  background: #2c3e63;
+  color: #fff;
+}
+main {
+  padding: 24px 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+h2 {
+  margin-top: 0;
+}
+.tab {
+  display: none;
+}
+.tab.active {
+  display: block;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+.row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 13px;
+  color: #555;
+  flex: 1;
+  min-width: 180px;
+}
+input,
+select {
+  padding: 8px 10px;
+  border: 1px solid #cdd5e2;
+  border-radius: 6px;
+  font-size: 14px;
+  margin-top: 4px;
+}
+button.primary {
+  background: #2b6cb0;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button.primary:hover {
+  background: #225590;
+}
+button {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid #cdd5e2;
+  background: #fff;
+  cursor: pointer;
+}
+button:hover {
+  background: #eef3fa;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+th,
+td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eef1f6;
+}
+th {
+  background: #f7f9fc;
+  color: #455;
+}
+.msg {
+  margin-top: 10px;
+  font-size: 14px;
+}
+.msg.ok {
+  color: #1e7b3a;
+}
+.msg.err {
+  color: #b03030;
+}
+.hint {
+  font-size: 13px;
+  color: #667;
+  background: #eef3fa;
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+.report-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.card.wide {
+  grid-column: 1 / -1;
+}
+.status-CONFIRMED {
+  color: #1e7b3a;
+  font-weight: 600;
+}
+.status-CANCELLED {
+  color: #b03030;
+  font-weight: 600;
+}
+.status-COMPLETED {
+  color: #666;
+  font-weight: 600;
+}

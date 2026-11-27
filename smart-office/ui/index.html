@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Smart Office — Seat & Space Allocation</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header>
+  <h1>🏢 Smart Office</h1>
+  <nav>
+    <button data-tab="book" class="active">Book a Desk</button>
+    <button data-tab="list">Bookings</button>
+    <button data-tab="availability">Availability</button>
+    <button data-tab="reports">Reports</button>
+    <button data-tab="mongo">Amenities (NoSQL)</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============ TAB: BOOK ============ -->
+  <section id="tab-book" class="tab active">
+    <h2>Book a Desk / Room</h2>
+    <form id="book-form" class="card">
+      <div class="row">
+        <label>Employee
+          <select id="book-emp" required></select>
+        </label>
+        <label>Desk / Room
+          <select id="book-desk" required></select>
+        </label>
+      </div>
+      <div class="row">
+        <label>Start
+          <input type="datetime-local" id="book-start" required />
+        </label>
+        <label>End
+          <input type="datetime-local" id="book-end" required />
+        </label>
+      </div>
+      <button type="submit" class="primary">Reserve</button>
+      <p id="book-msg" class="msg"></p>
+    </form>
+    <div class="hint">
+      Conflict test: book desk 2 from <code>10:00–12:00</code> then another
+      from <code>11:00–13:00</code> — the second must be blocked.
+    </div>
+  </section>
+
+  <!-- ============ TAB: BOOKINGS ============ -->
+  <section id="tab-list" class="tab">
+    <h2>Bookings</h2>
+    <div class="card">
+      <button id="reload-bookings">Reload</button>
+      <table id="bookings-table">
+        <thead>
+          <tr>
+            <th>ID</th><th>Desk</th><th>Employee</th>
+            <th>Start</th><th>End</th><th>Status</th><th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ TAB: AVAILABILITY ============ -->
+  <section id="tab-availability" class="tab">
+    <h2>Find Available Rooms</h2>
+    <form id="avail-form" class="card">
+      <div class="row">
+        <label>Min Capacity
+          <input type="number" id="avail-cap" value="1" min="1" />
+        </label>
+        <label>From
+          <input type="datetime-local" id="avail-start" required />
+        </label>
+        <label>To
+          <input type="datetime-local" id="avail-end" required />
+        </label>
+      </div>
+      <button type="submit" class="primary">Search</button>
+    </form>
+    <div class="card">
+      <table id="avail-table">
+        <thead><tr><th>Desk</th><th>Capacity</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ============ TAB: REPORTS ============ -->
+  <section id="tab-reports" class="tab">
+    <h2>Reports</h2>
+    <div class="report-grid">
+      <div class="card">
+        <h3>Peak Booking Hours</h3>
+        <table id="rep-peak">
+          <thead><tr><th>Hour</th><th>Bookings</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Zone Utilization</h3>
+        <table id="rep-zone">
+          <thead><tr><th>Zone</th><th>Bookings</th><th>Rank</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>No-Shows</h3>
+        <table id="rep-noshow">
+          <thead><tr><th>Employee</th><th>Booking</th><th>Start</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Below-Average Utilization</h3>
+        <table id="rep-below">
+          <thead><tr><th>Desk</th><th>Uses</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
+      <div class="card wide">
+        <h3>Current Availability (live view)</h3>
+        <table id="rep-current">
+          <thead><tr><th>Desk</th><th>Capacity</th></tr></thead><tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TAB: MONGO ============ -->
+  <section id="tab-mongo" class="tab">
+    <h2>Amenities (MongoDB)</h2>
+    <div class="row">
+      <input type="text" id="mongo-amenity" placeholder="e.g. Dual Monitor" />
+      <button id="mongo-search">Search by amenity</button>
+    </div>
+    <div class="card">
+      <table id="mongo-table">
+        <thead><tr><th>Desk</th><th>Zone</th><th>Resource ID</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <div class="card">
+      <h3>Add amenity to resource</h3>
+      <div class="row">
+        <input type="number" id="mongo-rid" placeholder="Resource ID" />
+        <input type="text" id="mongo-name" placeholder="Amenity name" />
+        <input type="number" id="mongo-count" value="1" min="1" />
+        <button id="mongo-add">Add</button>
+      </div>
+      <p id="mongo-msg" class="msg"></p>
+    </div>
+    <div class="card">
+      <h3>Amenity Inventory per Zone</h3>
+      <table id="mongo-report">
+        <thead><tr><th>Zone</th><th>Total Units</th><th>Distinct</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
